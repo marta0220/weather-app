@@ -7,10 +7,11 @@ form {
   position: relative;
   left: 17px;
 }
-.submit {
+#submit-button {
   color: rgb(203, 161, 64);
   font-weight: 600;
 }
+
 #geolocation-button {
   padding: 2px 4px;
   font-size: 13px;
