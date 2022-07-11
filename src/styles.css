@@ -1,0 +1,102 @@
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-top: 25px;
+  cursor: default;
+}
+form {
+  position: relative;
+  left: 17px;
+}
+.submit {
+  color: rgb(203, 161, 64);
+  font-weight: 600;
+}
+#geolocation-button {
+  padding: 2px 4px;
+  font-size: 13px;
+  border: solid 0.5px rgb(203, 161, 64);
+  border-radius: 2px;
+  color: #d8ab39;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+  top: -19px;
+  left: 17px;
+  transition: all 200ms ease-in-out;
+}
+#geolocation-button:hover {
+  background-color: #d8ab39;
+  color: white;
+}
+
+.city-section {
+  background-color: white;
+  border-bottom: solid 1px rgb(156, 155, 155);
+  height: 110px;
+  margin-left: 18px;
+  width: 300px;
+}
+.current-city {
+  font-weight: 700;
+  font-size: 35px;
+  position: relative;
+  top: -15px;
+}
+#date-today {
+  color: #d8ab39;
+  position: relative;
+  left: 5px;
+  top: -22px;
+}
+
+.degrees-today {
+  font-weight: 500;
+  font-size: 18px;
+  position: relative;
+  left: 6px;
+  top: -35px;
+}
+#celsius-temperature-today {
+  font-size: 35px;
+  position: relative;
+  top: 15px;
+}
+#fahrenheit-sign,
+#celsius-sign {
+  cursor: pointer;
+}
+#fahrenheit-sign:hover,
+#celsius-sign:hover {
+  color: #ffc433;
+}
+
+.weather-icon-today {
+  position: relative;
+  top: -70px;
+}
+.weather-parameters {
+  width: 300px;
+  position: relative;
+  left: 25px;
+  top: 5px;
+  color: rgb(92, 91, 91);
+}
+#description,
+#wind-speed,
+#humidity,
+#visibility {
+  color: #b49545;
+}
+
+.future-weather-section {
+  background-color: white;
+  border-left: solid 1px rgb(156, 155, 155);
+  font-size: 20px;
+  height: 240px;
+  line-height: 2.1;
+  position: relative;
+  padding: 18px;
+  right: -300px;
+  top: -230px;
+  width: 230px;
+}
