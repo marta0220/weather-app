@@ -9,6 +9,7 @@ let city = document.querySelector("#current-city");
 let temperatureToday = document.querySelector("#celsius-temperature-today");
 let fahrenheitSign = document.querySelector("#fahrenheit-sign");
 let celsiusSign = document.querySelector("#celsius-sign");
+let weatherIconToday = document.querySelector("#weather-icon-today");
 let humidity = document.querySelector("#humidity");
 let windSpeed = document.querySelector("#wind-speed");
 let description = document.querySelector("#description");
@@ -61,7 +62,11 @@ function showWeather(response) {
   visibility.innerHTML = response.data.visibility / 1000;
   description.innerHTML = response.data.weather[0].main;
   dateNow.innerHTML = formatDate(response.data.dt * 1000);
-  console.log(response.data);
+  weatherIconToday.setAttribute(
+    "src",
+    `img/${response.data.weather[0].icon}.png`
+  );
+  weatherIconToday.setAttribute("alt", response.data.weather[0].description);
 }
 
 geolocationButton.addEventListener("click", useGeolocation);
