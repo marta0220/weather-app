@@ -68,12 +68,7 @@ form {
   position: relative;
   top: 15px;
 }
-#fahrenheit-sign,
 #celsius-sign {
-  cursor: pointer;
-}
-#fahrenheit-sign:hover,
-#celsius-sign:hover {
   color: #ffc433;
 }
 

@@ -67,9 +67,23 @@ function showWeather(response) {
     `img/${response.data.weather[0].icon}.png`
   );
   weatherIconToday.setAttribute("alt", response.data.weather[0].description);
+  celsiusTemperature = response.data.main.temp;
+}
+let celsiusTemperature = null;
+
+function showFahrenheit(event) {
+  temperatureToday.innerHTML = Math.round(celsiusTemperature * 1.8 + 32);
+  fahrenheitSign.style.color = "#ffc433";
+  celsiusSign.style.color = "black";
+}
+function showCelsius(event) {
+  temperatureToday.innerHTML = Math.round(celsiusTemperature);
+  celsiusSign.style.color = "#ffc433";
+  fahrenheitSign.style.color = "black";
 }
 
 geolocationButton.addEventListener("click", useGeolocation);
 searchingForm.addEventListener("submit", handleCity);
-
+fahrenheitSign.addEventListener("click", showFahrenheit);
+celsiusSign.addEventListener("click", showCelsius);
 searchCity("Miami");
