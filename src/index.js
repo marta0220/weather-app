@@ -86,4 +86,4 @@ geolocationButton.addEventListener("click", useGeolocation);
 searchingForm.addEventListener("submit", handleCity);
 fahrenheitSign.addEventListener("click", showFahrenheit);
 celsiusSign.addEventListener("click", showCelsius);
-searchCity("Miami");
+searchCity("antarctica");
