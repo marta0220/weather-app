@@ -81,7 +81,22 @@ function showCelsius(event) {
   celsiusSign.style.color = "#ffc433";
   fahrenheitSign.style.color = "black";
 }
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Fri", "Sat", "Sun", "Mon", "Tue"];
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-4"><img src="img/02d.png" width="30px" /></div>
+          <div class="col-4 weekDays">${day}</div>
+          <div class="col-4">18°C</div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
 
+displayForecast();
 geolocationButton.addEventListener("click", useGeolocation);
 searchingForm.addEventListener("submit", handleCity);
 fahrenheitSign.addEventListener("click", showFahrenheit);

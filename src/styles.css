@@ -91,7 +91,7 @@ form {
   color: #b49545;
 }
 
-.future-weather-section {
+.weather-forecast {
   background-color: white;
   border-left: solid 1px rgb(156, 155, 155);
   font-size: 20px;
@@ -103,9 +103,7 @@ form {
   top: -230px;
   width: 230px;
 }
-.weekDays:hover {
-  color: #d8ab39;
-}
+
 .source {
   position: relative;
   top: -200px;
