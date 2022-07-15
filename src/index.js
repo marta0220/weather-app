@@ -54,6 +54,7 @@ function searchCity(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiWeatherKey}&units=${units}`;
   axios.get(apiUrl).then(showWeather);
 }
+
 function showWeather(response) {
   city.innerHTML = response.data.name;
   temperatureToday.innerHTML = Math.round(response.data.main.temp);
@@ -68,7 +69,9 @@ function showWeather(response) {
   );
   weatherIconToday.setAttribute("alt", response.data.weather[0].description);
   celsiusTemperature = response.data.main.temp;
+  getForecast(response.data.coord);
 }
+
 let celsiusTemperature = null;
 
 function showFahrenheit(event) {
@@ -81,24 +84,43 @@ function showCelsius(event) {
   celsiusSign.style.color = "#ffc433";
   fahrenheitSign.style.color = "black";
 }
-function displayForecast() {
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiWeatherKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
-  let days = ["Fri", "Sat", "Sun", "Mon", "Tue"];
+
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-4"><img src="img/02d.png" width="30px" /></div>
-          <div class="col-4 weekDays">${day}</div>
-          <div class="col-4">18°C</div>`;
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index > 2) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-4"><img src=img/${
+          forecastDay.weather[0].icon
+        }.png width="35px" /></div>
+          <div class="col-4 weekDays">${formatDay(forecastDay.dt)}</div>
+          <div class="col-4 max-temparature">${Math.round(
+            forecastDay.temp.day
+          )}°C</div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
 
-displayForecast();
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = days[date.getDay()];
+  return day;
+}
+
 geolocationButton.addEventListener("click", useGeolocation);
 searchingForm.addEventListener("submit", handleCity);
 fahrenheitSign.addEventListener("click", showFahrenheit);
 celsiusSign.addEventListener("click", showCelsius);
-searchCity("antarctica");
+searchCity("Ostrava");
