@@ -99,13 +99,16 @@ function displayForecast(response) {
     if (index > 2) {
       forecastHTML =
         forecastHTML +
-        `<div class="col-4"><img src=img/${
+        `<div class="col-3"><img src=img/${
           forecastDay.weather[0].icon
         }.png width="35px" /></div>
-          <div class="col-4 weekDays">${formatDay(forecastDay.dt)}</div>
-          <div class="col-4 max-temparature">${Math.round(
-            forecastDay.temp.day
-          )}°C</div>`;
+          <div class="col-3 weekDays">${formatDay(forecastDay.dt)}</div>
+          <div class="col-6 forecast-temperature">${Math.round(
+            forecastDay.temp.max
+          )}°<span class = min-temperature>/${Math.round(
+          forecastDay.temp.min
+        )}° </span></div>
+          `;
     }
   });
   forecastHTML = forecastHTML + `</div>`;
@@ -123,4 +126,4 @@ geolocationButton.addEventListener("click", useGeolocation);
 searchingForm.addEventListener("submit", handleCity);
 fahrenheitSign.addEventListener("click", showFahrenheit);
 celsiusSign.addEventListener("click", showCelsius);
-searchCity("Ostrava");
+searchCity("Kyiv");
