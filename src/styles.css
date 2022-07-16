@@ -46,7 +46,7 @@ form {
   font-size: 30px;
   position: relative;
   top: -15px;
-  max-width: 190px;
+  max-width: 250px;
   max-height: 50px;
 }
 #date-today {
@@ -68,13 +68,11 @@ form {
   position: relative;
   top: 15px;
 }
-#celsius-sign {
-  color: #ffc433;
-}
 
 #weather-icon-today {
   position: relative;
-  top: -80px;
+  top: -60px;
+  left: -20px;
 }
 .weather-parameters {
   width: 300px;

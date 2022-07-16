@@ -1,19 +1,8 @@
 let apiWeatherKey = "d873f8799b310a5282754959e9912176";
 let units = "metric";
-let dateNow = document.querySelector("#date-today");
-
 let searchingForm = document.querySelector("#searching-form");
-let submitForm = document.querySelector("#submit-form");
 let geolocationButton = document.querySelector("#geolocation-button");
-let city = document.querySelector("#current-city");
-let temperatureToday = document.querySelector("#celsius-temperature-today");
-let fahrenheitSign = document.querySelector("#fahrenheit-sign");
-let celsiusSign = document.querySelector("#celsius-sign");
-let weatherIconToday = document.querySelector("#weather-icon-today");
-let humidity = document.querySelector("#humidity");
-let windSpeed = document.querySelector("#wind-speed");
-let description = document.querySelector("#description");
-let visibility = document.querySelector("#visibility");
+
 function formatDate(timestamp) {
   let now = new Date(timestamp);
   let days = [
@@ -46,6 +35,7 @@ function findPosition(position) {
   axios.get(apiUrl).then(showWeather);
 }
 function handleCity(event) {
+  let submitForm = document.querySelector("#submit-form");
   event.preventDefault();
   let city = submitForm.value;
   searchCity(city);
@@ -56,6 +46,14 @@ function searchCity(city) {
 }
 
 function showWeather(response) {
+  let temperatureToday = document.querySelector("#celsius-temperature-today");
+  let weatherIconToday = document.querySelector("#weather-icon-today");
+  let humidity = document.querySelector("#humidity");
+  let windSpeed = document.querySelector("#wind-speed");
+  let description = document.querySelector("#description");
+  let visibility = document.querySelector("#visibility");
+  let dateNow = document.querySelector("#date-today");
+  let city = document.querySelector("#current-city");
   city.innerHTML = response.data.name;
   temperatureToday.innerHTML = Math.round(response.data.main.temp);
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
@@ -68,22 +66,10 @@ function showWeather(response) {
     `img/${response.data.weather[0].icon}.png`
   );
   weatherIconToday.setAttribute("alt", response.data.weather[0].description);
-  celsiusTemperature = response.data.main.temp;
+
   getForecast(response.data.coord);
 }
 
-let celsiusTemperature = null;
-
-function showFahrenheit(event) {
-  temperatureToday.innerHTML = Math.round(celsiusTemperature * 1.8 + 32);
-  fahrenheitSign.style.color = "#ffc433";
-  celsiusSign.style.color = "black";
-}
-function showCelsius(event) {
-  temperatureToday.innerHTML = Math.round(celsiusTemperature);
-  celsiusSign.style.color = "#ffc433";
-  fahrenheitSign.style.color = "black";
-}
 function getForecast(coordinates) {
   console.log(coordinates);
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiWeatherKey}&units=metric`;
@@ -124,6 +110,5 @@ function formatDay(timestamp) {
 
 geolocationButton.addEventListener("click", useGeolocation);
 searchingForm.addEventListener("submit", handleCity);
-fahrenheitSign.addEventListener("click", showFahrenheit);
-celsiusSign.addEventListener("click", showCelsius);
+
 searchCity("Kyiv");
